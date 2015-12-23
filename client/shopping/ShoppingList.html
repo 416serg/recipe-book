@@ -1,0 +1,30 @@
+<template name="ShoppingList">
+	<h1 class="page-title">My Shopping List</h1>
+	{{#if $.Session.get 'newItem'}}
+		{{> NewShoppingItem}}
+	{{else}}
+		<button class="add-shop-item">Add Shopping Item</button>
+	{{/if}}
+	<ul class="shopping-list">
+		{{#each shoppingItem}}
+			<li>
+				<i class="fa fa-trash"></i>
+				<label class="for-shop-item">
+					<input type="checkbox" class="shopping-item">{{name}} - <span class="amount">{{amount}}</span>
+				</label>
+			</li>
+		{{else}}
+			<li>Please add items at the top</li>
+		{{/each}}
+	</ul>
+	<h1 class="page-title">From the recipes</h1>
+	<ul class="shopping-list">
+		{{#each shoppingList}}
+			{{#each ingredients}}
+				<li>{{name}} - <span class="amount">{{amount}}</span></li>
+			{{/each}}
+		{{else}}
+			<li>Please add <a href="/recipe-book">recipes</a> to your menu</li>
+		{{/each}}
+	</ul>
+</template>
